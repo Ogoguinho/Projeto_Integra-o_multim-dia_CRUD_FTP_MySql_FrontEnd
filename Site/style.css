@@ -1,0 +1,405 @@
+* {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    background: rgb(253, 231, 222);
+    height: 7.5vh;
+    border-bottom: solid 2px rgb(44, 44, 44);
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+header a {
+    color: rgb(44, 44, 44);
+    transition: all 0.4s ease 0s;
+}
+
+header ul a:hover {
+    background-color: black;
+    color: rgb(253, 231, 222);
+}
+
+header ul {
+    padding-left: 20px;
+    height: inherit;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+header li {
+    font-family: "Bebas Neue";
+    font-size: 28px;
+    margin-right: 20px;
+    transition: all 0s ease 0s;
+}
+
+header li:hover {
+    font-size: 36px;
+}
+
+header input {
+    font-family: "Bebas Neue";
+    font-size: 20px;
+    font-weight: -100;
+    text-align: center;
+    border: solid 2px rgb(172, 155, 148);
+    border-radius: 5px;
+    width: 30%;
+    height: 35%;
+    margin-left: auto;
+    transition: all 0.2s ease 0s;
+}
+
+header img {
+    fill: black;
+    height: 48px;
+    padding-left: 20px;
+    transition: all 0.2s ease 0s;
+}
+
+header img:hover {
+    height: 60px;
+}
+
+header input:hover {
+    width: 30.5%;
+    height: 40%;
+    font-size: 22px;
+}
+
+header input:focus {
+    font-size: 28px;
+    border: solid 4px rgb(172, 155, 148);
+    width: 32%;
+    height: 50%;
+    outline: 0;
+}
+
+#banner {
+    font-family: "Archivo Black";
+    height: 92.5vh;
+    background: url(images/l-intro-1781220908\ 1.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    user-select: none;
+}
+
+#banner img {
+    height: 300px;
+    transition: all 0.2s ease 0s;
+    margin-bottom: 30px;
+}
+
+#banner img:hover {
+    height: 400px;
+}
+
+#banner h1 {
+    color: whitesmoke;
+    margin-bottom: 30px;
+    font-size: 50px;
+}
+
+#banner a {
+    border-radius: 0.2px;
+    font-size: 24px;
+    padding: 20px 40px;
+    background: white;
+    outline: white solid 2px;
+    display: inline-block;
+    color: black;
+    transition: all 0.2s ease 0s;
+}
+
+#banner a:hover {
+    font-size: 30px;
+    background: transparent;
+    outline: white solid 6px;
+    color: rgb(255, 255, 255);
+}
+
+#presentation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: "Archivo Black";
+    height: 100vh;
+    border-top: solid 2px rgb(44, 44, 44);
+    background: rgb(253, 231, 222);
+}
+
+#stamp {
+    height: 100px;
+    position: absolute;
+    margin-top: 20px;
+    left: 20px;
+}
+
+#presentation h1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: "Bebas Neue";
+    font-size: 60px;
+    font-weight: 200;
+}
+
+.infocard {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    height: 40vh;
+    width: 80%;
+    background: rgb(219, 199, 191);
+    border-radius: 15px;
+}
+
+.storytelling {
+    padding: 20px 20px;
+    height: 80%;
+    width: 45.5%;
+    display: flex;
+    flex-direction: column;
+    background: rgb(190, 173, 166);
+    border-radius: 15px;
+}
+
+.infocard img {
+    border-radius: 10px;
+    object-fit: cover;
+    width: 48%;
+    height: 90%;
+}
+
+#presentation h2 {
+    font-family: "Bebas Neue";
+    font-size: 36px;
+    font-weight: 100;
+}
+
+#menu {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(255, 252, 251);
+}
+
+.item {
+    height: 35vh;
+    margin: 10px;
+    padding: 10px;
+    border: solid 1.95px rgb(44, 44, 44);
+    border-radius: 12.5px;
+    width: 50%;
+    background-color: rgb(253, 231, 222);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item img {
+    border: solid 1.95px rgb(44, 44, 44);
+    border-radius: 12.5px;
+    height: 100%;
+    width: 40%;
+    object-fit: cover;
+}
+
+.item div {
+    margin-left: 15px;
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.item h1 {
+    font-weight: 300;
+    font-family: "Bebas Neue";
+}
+
+.item h2 {
+    font-family: "Bebas Neue";
+    color: rgb(65, 65, 65);
+    font-weight: 300;
+    font-size: 40px;
+}
+
+.item p {
+    font-family: "Archivo Black";
+    color: rgb(94, 94, 94);
+}
+
+.item button {
+    border: solid 1.95px rgb(44, 44, 44);
+    border-radius: 12.5px;
+    cursor: pointer;
+    height: 20%;
+    background-color: rgb(201, 163, 149);
+}
+
+.item button:hover {
+    background-color: rgb(163, 133, 122);
+}
+
+#carrinho {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(255, 252, 251);
+}
+
+#login {
+    font-family: "Bebas Neue";
+    height: 100vh;
+    background: url(images/l-intro-1781220908\ 1.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#login img {
+    height: 360px;
+    position: absolute;
+    top: 35%;
+    left: 20%;
+}
+
+#login div {
+    margin-left: auto;
+    height: 100%;
+    background: rgb(255, 252, 251);
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#login form {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 30px;
+    width: 66%;
+    height: auto;
+    background: rgb(240, 221, 214);
+    border: solid 2px rgb(63, 63, 63);
+    border-radius: 15px;
+    text-align: center;
+}
+
+#login label {
+    font-size: 24px;
+}
+
+#login .info-submit {
+    border: solid 1px rgb(63, 63, 63);
+    border-radius: 5px;
+    padding: 10px;
+    font-family: "Bebas Neue";
+    font-size: 21px;
+    transition: all 0.2s ease 0s;
+    cursor: pointer;
+}
+
+#login .info-submit:hover {
+    padding: 20px;
+    background-color: rgb(209, 209, 209);
+}
+
+.loginput {
+    width: 50%;
+    height: 15px;
+    border: solid 1px rgb(63, 63, 63);
+    border-radius: 3px;
+    margin: 2px;
+    transition: all 0.1s ease 0s;
+}
+
+.loginput:hover {
+    font-size: 15px;
+    width: 52%;
+    height: 19px;
+}
+
+.loginput:focus {
+    font-size: 18px;
+    width: 55%;
+    height: 25px;
+}
+
+#login hr {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 50%;
+    border-color: rgb(114, 100, 95);
+}
+
+footer {
+    height: 20vh;
+    background: rgb(182, 165, 159);
+    border-top: solid 2px rgb(44, 44, 44);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: "Archivo Black";
+}
+
+footer div {
+    padding-top: 12px;
+    background: rgb(150, 136, 131);
+    border-radius: 10px;
+    margin: 10px;
+    width: 17.5%;
+    height: 75%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer h3 {
+    background-color: rgb(114, 100, 95);
+    padding: 5px 0px;
+    width: 93%;
+    border-radius: 10px;
+}
+
+footer hr {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+    border-color: rgb(182, 165, 159);
+}
+
+footer a {
+    position: absolute;
+    right: 100px;
+    bottom: 1;
+    user-select: none;
+    color: rgb(182, 165, 159);
+}
+
+footer a:hover {
+    color: rgb(155, 141, 136);
+}
