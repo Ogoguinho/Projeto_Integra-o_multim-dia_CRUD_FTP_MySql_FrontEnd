@@ -23,16 +23,15 @@
             <li><a href="carrinho.html">carrinho</a></li>
             <li><a href="login.html">perfil</a></li>
         </ul>
+        <button id="tema" class="tema-toggle" type="button">MODO ESCURO</button>
     </header>
     <section id="carrinho">
-        <div class="item">
-            <img src="images/json;-;.png" alt="">
-            <div>
-                <h1>the item</h1>
-                <h2>99,99</h2>
-                <p>A descrição</p>
-                <button><h1>REMOVER DO CARRINHO</h1></button>
-            </div>
+        <h1>Seu carrinho</h1>
+        <p id="carrinho-vazio" class="aviso">Seu carrinho está vazio. <a href="lanches.html">Conferir o menu -></a></p>
+        <div id="lista-carrinho"></div>
+        <div class="resumo">
+            <h2>Total: R$ <span id="total">0,00</span></h2>
+            <button id="finalizar" hidden><h1>FINALIZAR PEDIDO</h1></button>
         </div>
     </section>
     <footer>
@@ -56,5 +55,6 @@
             <p>Facebook - @mogusbrujge</p>
         </div>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

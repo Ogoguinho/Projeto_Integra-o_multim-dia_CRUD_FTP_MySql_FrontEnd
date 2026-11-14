@@ -403,3 +403,580 @@ footer a {
 footer a:hover {
     color: rgb(155, 141, 136);
 }
+
+#carrinho > h1,
+#pedidos > h1 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-family: "Bebas Neue";
+    font-size: 60px;
+    font-weight: 200;
+}
+
+#pedidos {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(255, 252, 251);
+}
+
+.aviso {
+    margin-top: 20px;
+    text-align: center;
+    font-family: "Archivo Black";
+    color: rgb(94, 94, 94);
+}
+
+.aviso a {
+    color: rgb(114, 100, 95);
+    text-decoration: underline;
+}
+
+.aviso a:hover {
+    color: black;
+}
+
+.resumo {
+    margin: 20px 0 40px 0;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.resumo h2 {
+    margin-bottom: 15px;
+    font-family: "Bebas Neue";
+    font-size: 40px;
+    font-weight: 300;
+}
+
+.resumo button {
+    padding: 10px 30px;
+    border: solid 1.95px rgb(44, 44, 44);
+    border-radius: 12.5px;
+    cursor: pointer;
+    background-color: rgb(201, 163, 149);
+    transition: all 0.2s ease 0s;
+}
+
+.resumo button:hover {
+    background-color: rgb(163, 133, 122);
+}
+
+.resumo button h1 {
+    margin: 0;
+    font-family: "Bebas Neue";
+    font-size: 28px;
+    font-weight: 300;
+}
+
+.pedido {
+    width: 50%;
+    margin: 10px;
+    padding: 15px 20px;
+    border: solid 1.95px rgb(44, 44, 44);
+    border-radius: 12.5px;
+    background-color: rgb(253, 231, 222);
+    font-family: "Archivo Black";
+    color: rgb(94, 94, 94);
+}
+
+.pedido h2 {
+    font-family: "Bebas Neue";
+    font-size: 36px;
+    font-weight: 300;
+    color: rgb(65, 65, 65);
+}
+
+.pedido ul {
+    margin: 10px 0 10px 20px;
+}
+
+.pedido p {
+    margin-top: 5px;
+}
+
+/* ---------- BOTÃO DE TEMA ---------- */
+
+:root {
+    --largura-lateral: clamp(150px, 28vw, 240px);
+}
+
+.tema-toggle {
+    margin-left: 20px;
+    padding: 5px 15px;
+    border: solid 2px rgb(172, 155, 148);
+    border-radius: 5px;
+    background: transparent;
+    color: rgb(44, 44, 44);
+    font-family: "Bebas Neue";
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.2s ease 0s;
+}
+
+.tema-toggle:hover {
+    background-color: rgb(44, 44, 44);
+    color: rgb(253, 231, 222);
+}
+
+/* ---------- MODO ESCURO ---------- */
+
+body.dark-mode {
+    background: rgb(22, 19, 17);
+    color: rgb(243, 233, 229);
+}
+
+body.dark-mode header {
+    background: rgb(42, 36, 33);
+    border-bottom-color: rgb(200, 185, 178);
+}
+
+body.dark-mode header a {
+    color: rgb(243, 233, 229);
+}
+
+body.dark-mode header img {
+    filter: invert(1);
+}
+
+body.dark-mode header ul a:hover {
+    background-color: rgb(243, 233, 229);
+    color: rgb(22, 19, 17);
+}
+
+body.dark-mode header input {
+    background: rgb(58, 50, 46);
+    color: rgb(243, 233, 229);
+    border-color: rgb(120, 104, 97);
+}
+
+body.dark-mode .tema-toggle {
+    color: rgb(243, 233, 229);
+    border-color: rgb(120, 104, 97);
+}
+
+body.dark-mode .tema-toggle:hover {
+    background-color: rgb(243, 233, 229);
+    color: rgb(22, 19, 17);
+}
+
+body.dark-mode #presentation {
+    background: rgb(42, 36, 33);
+    border-top-color: rgb(200, 185, 178);
+}
+
+body.dark-mode .infocard {
+    background: rgb(58, 50, 46);
+}
+
+body.dark-mode .storytelling {
+    background: rgb(74, 63, 58);
+}
+
+body.dark-mode #menu,
+body.dark-mode #carrinho,
+body.dark-mode #pedidos {
+    background: rgb(28, 24, 22);
+}
+
+body.dark-mode .item,
+body.dark-mode .pedido {
+    background-color: rgb(58, 50, 46);
+    border-color: rgb(200, 185, 178);
+}
+
+body.dark-mode .item h2,
+body.dark-mode .pedido h2 {
+    color: rgb(243, 233, 229);
+}
+
+body.dark-mode .item p,
+body.dark-mode .pedido {
+    color: rgb(205, 190, 184);
+}
+
+body.dark-mode .item button,
+body.dark-mode .resumo button {
+    background-color: rgb(120, 98, 88);
+    border-color: rgb(200, 185, 178);
+    color: rgb(243, 233, 229);
+}
+
+body.dark-mode .item button:hover,
+body.dark-mode .resumo button:hover {
+    background-color: rgb(150, 124, 112);
+}
+
+body.dark-mode .aviso {
+    color: rgb(205, 190, 184);
+}
+
+body.dark-mode .aviso a {
+    color: rgb(220, 200, 190);
+}
+
+body.dark-mode .aviso a:hover {
+    color: rgb(255, 255, 255);
+}
+
+body.dark-mode #login div {
+    background: rgb(28, 24, 22);
+}
+
+body.dark-mode #login form {
+    background: rgb(42, 36, 33);
+    border-color: rgb(200, 185, 178);
+}
+
+body.dark-mode .loginput {
+    background: rgb(58, 50, 46);
+    color: rgb(243, 233, 229);
+    border-color: rgb(200, 185, 178);
+}
+
+body.dark-mode #login hr {
+    border-color: rgb(120, 104, 97);
+}
+
+body.dark-mode #login .info-submit {
+    background-color: rgb(74, 63, 58);
+    color: rgb(243, 233, 229);
+    border-color: rgb(200, 185, 178);
+}
+
+body.dark-mode #login .info-submit:hover {
+    background-color: rgb(95, 82, 76);
+}
+
+body.dark-mode footer {
+    background: rgb(58, 50, 46);
+    border-top-color: rgb(200, 185, 178);
+}
+
+body.dark-mode footer div {
+    background: rgb(74, 63, 58);
+}
+
+body.dark-mode footer h3 {
+    background-color: rgb(120, 104, 97);
+}
+
+body.dark-mode footer hr {
+    border-color: rgb(120, 104, 97);
+}
+
+body.dark-mode footer a {
+    color: rgb(120, 104, 97);
+}
+
+body.dark-mode footer a:hover {
+    color: rgb(150, 136, 131);
+}
+
+/* ---------- RESPONSIVO: RETRATO (altura > largura) ---------- */
+
+@media (orientation: portrait) {
+    body {
+        margin-left: var(--largura-lateral);
+    }
+
+    header {
+        box-sizing: border-box;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--largura-lateral);
+        height: 100vh;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px 0;
+        border-bottom: none;
+        border-right: solid 2px rgb(44, 44, 44);
+        overflow-y: auto;
+        z-index: 10;
+    }
+
+    header > a {
+        display: block;
+        text-align: center;
+    }
+
+    header img {
+        padding-left: 0;
+    }
+
+    header ul {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 10px 20px;
+        margin-left: 0 !important;
+    }
+
+    header li {
+        margin-right: 0;
+    }
+
+    header input,
+    header input:hover,
+    header input:focus {
+        width: 85%;
+        height: auto;
+        margin: 10px 20px;
+    }
+
+    header .tema-toggle {
+        margin: 10px 20px;
+        align-self: flex-start;
+    }
+
+    #stamp {
+        left: calc(var(--largura-lateral) + 20px);
+    }
+
+    #presentation {
+        height: auto;
+        min-height: 100vh;
+        padding-bottom: 30px;
+    }
+
+    .infocard {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        padding: 15px 0;
+    }
+
+    .storytelling {
+        width: 85%;
+        height: auto;
+        margin: 10px auto !important;
+    }
+
+    .infocard img {
+        width: 85%;
+        height: auto;
+        margin: 10px auto !important;
+    }
+
+    #menu,
+    #carrinho,
+    #pedidos {
+        min-height: 100vh;
+    }
+
+    .item {
+        width: 90%;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .item img {
+        width: 100%;
+        height: 180px;
+    }
+
+    .item div {
+        width: 100%;
+        margin: 10px 0 0 0;
+    }
+
+    .resumo,
+    .pedido {
+        width: 90%;
+    }
+
+    #login {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    #login img {
+        position: static;
+        display: block;
+        height: 200px;
+        margin: 20px auto;
+    }
+
+    #login div {
+        width: 100%;
+        height: auto;
+        padding-bottom: 30px;
+    }
+
+    #login form {
+        width: 85%;
+    }
+
+    footer {
+        height: auto;
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    footer div {
+        width: 85%;
+        height: auto;
+        margin: 10px 0;
+        padding-bottom: 12px;
+    }
+
+    footer a {
+        position: static;
+        display: block;
+        text-align: center;
+        margin: 10px;
+    }
+}
+
+/* ---------- AJUSTES RESPONSIVOS: RETRATO ---------- */
+
+@media (orientation: portrait) {
+    body {
+        overflow-x: hidden;
+    }
+
+    header > a img {
+        display: block;
+        width: 90%;
+        height: auto;
+        margin: 0 auto;
+        padding-left: 0;
+    }
+
+    header input,
+    header input:hover,
+    header input:focus {
+        font-size: 16px;
+        width: 85%;
+        margin: 10px 20px;
+    }
+
+    #banner {
+        height: auto;
+        min-height: 92.5vh;
+        padding: 40px 0;
+    }
+
+    #banner img,
+    #banner img:hover {
+        height: auto;
+        width: 60%;
+        max-width: 260px;
+    }
+
+    #banner h1 {
+        font-size: 34px;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    #banner a,
+    #banner a:hover {
+        font-size: 18px;
+        padding: 12px 24px;
+    }
+
+    #banner a:hover {
+        font-size: 20px;
+    }
+
+    #stamp {
+        position: static;
+        display: block;
+        height: 80px;
+        margin: 20px auto 0 auto;
+    }
+
+    #presentation h1 {
+        font-size: 40px;
+        padding: 0 15px;
+    }
+
+    #presentation h2 {
+        font-size: 28px;
+    }
+
+    .infocard img {
+        max-width: 100%;
+    }
+
+    #login div {
+        padding: 0 10px;
+    }
+
+    #login form {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* ---------- CORREÇÕES DE LARGURA: RETRATO ---------- */
+
+@media (orientation: portrait) {
+    #presentation {
+        box-sizing: border-box;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    #presentation h1 {
+        font-size: 32px;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    #login {
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    #login img {
+        width: 180px;
+        max-width: 80%;
+        height: auto;
+    }
+
+    #login div {
+        box-sizing: border-box;
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+/* ---------- BANNER: RETRATO (quebra de linha) ---------- */
+
+@media (orientation: portrait) {
+    #banner {
+        box-sizing: border-box;
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #banner h1 {
+        max-width: 100%;
+        font-size: 28px;
+        line-height: 1.15;
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+}
+
+/* ---------- AJUSTE FINO: RETRATO ---------- */
+
+@media (orientation: portrait) {
+    #banner h1 {
+        font-size: 24px;
+        overflow-wrap: normal;
+    }
+
+    header input,
+    header input:hover,
+    header input:focus {
+        font-size: 14px;
+    }
+}
