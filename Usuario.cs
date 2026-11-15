@@ -18,7 +18,9 @@ namespace Forms_c_
 
         public void InserirUsuario()
         {
-            string inserir = $"INSERT INTO Usuario VALUES(null, '{nomeUsuario}', '{senhaUsuario}', '{dtnUsuario:yyyy/MM/dd}', '{telefoneUsuario}', '{emailUsuario}');";
+            // O cadastro do site não envia data de nascimento: nesse caso grava NULL
+            string dataNascimento = dtnUsuario == default(DateTime) ? "NULL" : $"'{dtnUsuario:yyyy/MM/dd}'";
+            string inserir = $"INSERT INTO Usuario VALUES(null, '{nomeUsuario}', '{senhaUsuario}', {dataNascimento}, '{telefoneUsuario}', '{emailUsuario}');";
             db.ExecutarCoamando(inserir);
         }
 

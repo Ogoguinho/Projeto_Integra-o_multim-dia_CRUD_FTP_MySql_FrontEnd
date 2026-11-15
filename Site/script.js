@@ -189,6 +189,69 @@ function renderizarPedidos() {
     });
 }
 
+/* ---------- CONEXÃO COM O C# (FETCH) ---------- */
+
+const URL_API = "http://localhost:5000/api";
+
+// Envia um objeto como JSON (POST) para o aplicativo Windows Forms.
+// Exemplo: enviarParaServidor("usuario", "cadastrar", { ... })
+async function enviarParaServidor(entidade, acao, objeto, elementoStatus) {
+    const rota = URL_API + "/" + entidade + "/" + acao;
+
+    if (elementoStatus) {
+        elementoStatus.textContent = "Enviando comando '" + acao + "' para o aplicativo Windows Forms...";
+    }
+
+    try {
+        const resposta = await fetch(rota, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(objeto)
+        });
+
+        if (resposta.ok) {
+            const resultado = await resposta.json();
+            if (elementoStatus) {
+                elementoStatus.textContent = "Sucesso! Resposta do C#: " + resultado.mensagem;
+            }
+            return resultado;
+        }
+
+        if (elementoStatus) {
+            elementoStatus.textContent = "Erro no servidor C#. Status: " + resposta.status;
+        }
+    } catch (erro) {
+        console.error(erro);
+        if (elementoStatus) {
+            elementoStatus.textContent = "Falha de conexão. Certifique-se de que o projeto Windows Forms está aberto e rodando (F5).";
+        }
+    }
+
+    return null;
+}
+
+function iniciarCadastro() {
+    const formulario = document.querySelector("#formCadastro");
+    if (!formulario) return;
+
+    const status = document.querySelector("#status");
+
+    formulario.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+
+        // Mesmos nomes de propriedades da classe Usuario.cs
+        const usuario = {
+            idUsuario: 0,
+            nomeUsuario: formulario.querySelector("#inputNome").value,
+            senhaUsuario: formulario.querySelector("#inputSenha").value,
+            telefoneUsuario: formulario.querySelector("#inputTel").value,
+            emailUsuario: formulario.querySelector("#inputEmail").value
+        };
+
+        enviarParaServidor("usuario", "cadastrar", usuario, status);
+    });
+}
+
 /* ---------- TEMA ---------- */
 
 const CHAVE_TEMA = "mogus_tema";
@@ -223,4 +286,5 @@ document.addEventListener("DOMContentLoaded", function () {
     iniciarMenu();
     iniciarCarrinho();
     renderizarPedidos();
+    iniciarCadastro();
 });

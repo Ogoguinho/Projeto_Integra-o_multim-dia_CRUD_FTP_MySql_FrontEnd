@@ -58,30 +58,42 @@ namespace Forms_c_
                                 }
 
                                 string mensagemRetorno = "";
+                                bool erroNoBanco = false;
                                 var path = request.Url?.AbsolutePath ?? "";
 
-                                // --- ROTAS DE USUÁRIO ---
-                                if (path.StartsWith("/api/usuario/"))
+                                try
                                 {
-                                    var usuario = JsonSerializer.Deserialize<Usuario>(corpoJson);
-                                    if (usuario != null)
-                                    { 
-                                        if (path == "/api/usuario/alterar") { usuario.AlterarUsuario(); mensagemRetorno = "Usuário alterado com sucesso!"; }
-                                        else if (path == "/api/usuario/deletar") { usuario.DeletarUsuario(); mensagemRetorno = "Usuário deletado com sucesso!"; }
+                                    // --- ROTAS DE USUÁRIO ---
+                                    if (path.StartsWith("/api/usuario/"))
+                                    {
+                                        var usuario = JsonSerializer.Deserialize<Usuario>(corpoJson);
+                                        if (usuario != null)
+                                        {
+                                            if (path == "/api/usuario/cadastrar") { usuario.InserirUsuario(); mensagemRetorno = "Usuário cadastrado com sucesso!"; }
+                                            else if (path == "/api/usuario/alterar") { usuario.AlterarUsuario(); mensagemRetorno = "Usuário alterado com sucesso!"; }
+                                            else if (path == "/api/usuario/deletar") { usuario.DeletarUsuario(); mensagemRetorno = "Usuário deletado com sucesso!"; }
+                                        }
+                                    }
+                                    // --- ROTAS DE PEDIDO ---
+                                    else if (path.StartsWith("/api/pedido/"))
+                                    {
+                                        var pedido = JsonSerializer.Deserialize<Pedido>(corpoJson);
+                                        if (pedido != null)
+                                        {
+                                            if (path == "/api/pedido/alterar") { pedido.AlterarPedido(); mensagemRetorno = "Pedido alterado com sucesso!"; }
+                                            else if (path == "/api/pedido/deletar") { pedido.DeletarPedido(); mensagemRetorno = "Pedido deletado com sucesso!"; }
+                                        }
                                     }
                                 }
-                                // --- ROTAS DE PEDIDO ---
-                                else if (path.StartsWith("/api/pedido/"))
+                                catch (Exception exBanco)
                                 {
-                                    var pedido = JsonSerializer.Deserialize<Pedido>(corpoJson);
-                                    if (pedido != null)
-                                    {
-                                        if (path == "/api/pedido/alterar") { pedido.AlterarPedido(); mensagemRetorno = "Pedido alterado com sucesso!"; }
-                                        else if (path == "/api/pedido/deletar") { pedido.DeletarPedido(); mensagemRetorno = "Pedido deletado com sucesso!"; }
-                                    }
+                                    // Responde com erro para o fetch não ficar esperando para sempre
+                                    erroNoBanco = true;
+                                    mensagemRetorno = "Erro ao executar a operação: " + exBanco.Message;
+                                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
                                 }
 
-                                if (!string.IsNullOrEmpty(mensagemRetorno))
+                                if (!string.IsNullOrEmpty(mensagemRetorno) && !erroNoBanco)
                                 {
                                     this.Invoke(new Action(() =>
                                     {
