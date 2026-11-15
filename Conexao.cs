@@ -1,80 +1,104 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace ProjetoCRUD_Miguel_Diniz
 {
+    // Erro de conexão com o banco (o servidor HTTP responde 503)
+    public class ErroConexao : Exception
+    {
+        public ErroConexao(string mensagem, Exception interno) : base(mensagem, interno) { }
+    }
+
     internal class Conexao
     {
         //ola eu sou um classe
 
-        MySqlConnection conn;//Executa Insert Update e Delete,"é uma variavel da classe"
+        // A string de conexão vem da variável de ambiente MOGUS_CONEXAO.
+        // Sem a variável, usa o mesmo banco de antes: localhost, MogusDB, root, senha vazia.
+        // Exemplo: Server=localhost;Database=MogusDB;Uid=root;Pwd=minhasenha;CharSet=utf8mb4
+        public static string DadosConexao
+        {
+            get
+            {
+                string ambiente = Environment.GetEnvironmentVariable("MOGUS_CONEXAO");
+                if (!string.IsNullOrWhiteSpace(ambiente)) return ambiente;
+                return "Server=localhost;Port=3306;Database=MogusDB;Uid=root;Pwd=;CharSet=utf8mb4";
+            }
+        }
 
-        public void conectarBD()
+        // Cria um parâmetro; null vira NULL no banco
+        public static MySqlParameter P(string nome, object valor)
+        {
+            return new MySqlParameter(nome, valor ?? DBNull.Value);
+        }
+
+        //Abre uma conexão. Quem chamar deve fechar (using). Serve também para transações.
+        public MySqlConnection Abrir()
         {
             try//tente rodar o código
             {
-                string dadosConexao = "Persist security info = false; server = localhost; database = MogusDB; uid = root; pwd=";
-                //^Dados: Persistencia de segurança: 0 --> nova vez que o usuário logar as info. não vao continuar logados; acessa o nome do servidor; id de user: raiz do código, como esta descrito; senha vazia;
-
-                conn = new MySqlConnection(dadosConexao);
-                //Terminamos de instanciar  a classe com a string de parametro
-
+                var conn = new MySqlConnection(DadosConexao);
                 conn.Open();
-                //Abrimos a conexão
+                return conn;
             }
-
             catch (MySqlException excessao)//pegue a excessão
             {
-                throw new Exception("Conexão não estabelecida." + excessao.Message);
-                //Manda a mensagem ao usuário+ atributo padrão "Message" do mysql
+                throw new ErroConexao("Conexão não estabelecida. " + excessao.Message, excessao);
             }
+        }
+
+        // Cria o comando com os parâmetros (e a transação, quando houver)
+        public static MySqlCommand Criar(MySqlConnection conn, MySqlTransaction transacao, string sql, MySqlParameter[] parametros)
+        {
+            var comando = new MySqlCommand(sql, conn, transacao);
+            if (parametros != null) comando.Parameters.AddRange(parametros);
+            return comando;
         }
 
         //Metodo que executa instruções que não retornam valor: INSERT, UPDATE, DELETE
-
-        public void ExecutarCoamando(string sql)
+        //Os valores sempre vão em parâmetros (@nome), nunca concatenados no texto do SQL
+        public int ExecutarComando(string sql, params MySqlParameter[] parametros)
         {
-            conectarBD();//Inicializa a conexão
-
-            try
+            using (var conn = Abrir())
+            using (var comando = Criar(conn, null, sql, parametros))
             {
-                MySqlCommand comando = new MySqlCommand(sql, conn);//conn é o obj de conexão, "sql" é o comando em string
-                comando.ExecuteNonQuery(); //Executa a instrução fornecida
-            }
-            catch (MySqlException excessao)
-            {
-                throw new Exception("Instrução não executada. " + $"\n{sql}\n" + excessao.Message);//Mesmo de antes
-            }
-            finally//Sempre será executado, com ou sem erro;
-            {
-                conn.Close();//fecha a conexão
+                return comando.ExecuteNonQuery();
             }
         }
 
-        //metodo que executa instrução select
-
-        public DataTable ExecutarConsulta(string query)
+        //INSERT que devolve o id gerado (AUTO_INCREMENT)
+        public long Inserir(string sql, params MySqlParameter[] parametros)
         {
-            //"MySqlDataAdapter" -> Essa classe executa o select, esse resultado será exibido através de datatable
-
-            conectarBD();
-
-            try
+            using (var conn = Abrir())
+            using (var comando = Criar(conn, null, sql, parametros))
             {
-                DataTable dt = new DataTable();
-                MySqlDataAdapter dados = new MySqlDataAdapter(query, conn);
-                dados.Fill(dt);
-                return dt;
+                comando.ExecuteNonQuery();
+                return comando.LastInsertedId;
             }
+        }
 
-            catch (MySqlException ex)
+        //Devolve a primeira coluna da primeira linha (ou null)
+        public object ExecutarEscalar(string sql, params MySqlParameter[] parametros)
+        {
+            using (var conn = Abrir())
+            using (var comando = Criar(conn, null, sql, parametros))
             {
-                throw new Exception($"Erro ao executar o comando SELECT: {ex.Message}");
+                object valor = comando.ExecuteScalar();
+                return valor == DBNull.Value ? null : valor;
+            }
+        }
+
+        //metodo que executa instrução select, o resultado vem em um DataTable
+        public DataTable ExecutarConsulta(string query, params MySqlParameter[] parametros)
+        {
+            using (var conn = Abrir())
+            using (var comando = Criar(conn, null, query, parametros))
+            using (var leitor = comando.ExecuteReader())
+            {
+                var dt = new DataTable();
+                dt.Load(leitor);
+                return dt;
             }
         }
     }
