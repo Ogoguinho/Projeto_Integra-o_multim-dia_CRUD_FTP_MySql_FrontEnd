@@ -189,6 +189,38 @@ function renderizarPedidos() {
     });
 }
 
+/* ---------- EXPORTAR JSON (BLOB + DOWNLOAD) ---------- */
+
+// Transforma qualquer objeto/lista em um arquivo .json e dispara o download no navegador.
+function baixarJson(objeto, nomeArquivo) {
+    const texto = JSON.stringify(objeto, null, 2);
+    const blob = new Blob([texto], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = nomeArquivo;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+}
+
+function iniciarExportacao() {
+    const botao = document.querySelector("#exportar-json");
+    if (!botao) return;
+
+    botao.hidden = lerLista(CHAVE_PEDIDOS).length === 0;
+
+    botao.addEventListener("click", function () {
+        const pedidos = lerLista(CHAVE_PEDIDOS);
+        if (pedidos.length === 0) return;
+
+        baixarJson(pedidos, "mogus_pedidos.json");
+    });
+}
+
 /* ---------- CONEXÃO COM O C# (FETCH) ---------- */
 
 const URL_API = "http://localhost:5000/api";
@@ -286,5 +318,6 @@ document.addEventListener("DOMContentLoaded", function () {
     iniciarMenu();
     iniciarCarrinho();
     renderizarPedidos();
+    iniciarExportacao();
     iniciarCadastro();
 });
