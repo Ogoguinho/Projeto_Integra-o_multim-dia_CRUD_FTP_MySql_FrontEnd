@@ -1,8 +1,4 @@
-/*
-Script completamente gerado pelo HumanGPT com assistência do Stack Overflow.
-
-;D
-*/
+/*Script completamente gerado pelo Claude com assistência do Stack Overflow.*/
 
 const CHAVE_CARRINHO = "mogus_carrinho";
 const CHAVE_PEDIDOS = "mogus_pedidos";
@@ -320,4 +316,5 @@ document.addEventListener("DOMContentLoaded", function () {
     renderizarPedidos();
     iniciarExportacao();
     iniciarCadastro();
+
 });
